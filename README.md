@@ -1,5 +1,7 @@
 # buildless
 
+[![Build Status](https://travis-ci.org/OrKoN/buildless.svg?branch=master)](https://travis-ci.org/OrKoN/buildless)
+
 Development HTTP server and deployment tool for static websites.
 
 - local http server
