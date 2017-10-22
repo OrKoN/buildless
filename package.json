@@ -1,6 +1,6 @@
 {
   "name": "buildless",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tool to bundle and develop static HTML websites",
   "main": "index.js",
   "scripts": {
