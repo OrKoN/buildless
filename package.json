@@ -1,0 +1,25 @@
+{
+  "name": "buildless",
+  "version": "0.0.1",
+  "description": "Tool to bundle and develop static HTML websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Oleksii Rudenko <alexei.rudenko@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "2.138.0",
+    "chokidar": "1.7.0",
+    "colors": "1.1.2",
+    "ejs": "2.5.7",
+    "glob": "7.1.2",
+    "memory-fs": "0.4.1",
+    "minimist": "1.2.0",
+    "mmmagic": "0.4.5"
+  },
+  "bin": {
+    "bls": "./index.js"
+  }
+}
