@@ -21,6 +21,30 @@ Basically, this is a simple preprocessor for static files which does not pollute
 
 ## Usage
 
+Create `.buildless.js` in your project folder:
+
+```js
+module.exports = {
+  port: 8080,
+  environment: {
+    dev: {
+      ENDPOINT: 'dev'
+    },
+    prod: {
+      ENDPOINT: 'prod'
+    },
+  },
+  deployment: {
+    s3: {
+      bucket: 'orkon-test',
+    },
+  },
+};
+```
+
+`environment` defines variables which are available to the EJS template engine.
+`deployment` defines how the files will be deployed after they are processed by EJS.
+
 Start a server in the local folder:
 
 ```sh
