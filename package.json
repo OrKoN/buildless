@@ -16,8 +16,8 @@
     "ejs": "2.5.7",
     "glob": "7.1.2",
     "memory-fs": "0.4.1",
-    "minimist": "1.2.0",
-    "mmmagic": "0.4.5"
+    "mime": "2.0.3",
+    "minimist": "1.2.0"
   },
   "bin": {
     "bls": "./index.js"
