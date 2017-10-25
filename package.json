@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "exit 0",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "compile": "npm run clean && tsc --allowJs -p .",
+    "watch": "tsc --allowJs -w -p .",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "Oleksii Rudenko <alexei.rudenko@gmail.com>",
@@ -16,7 +19,8 @@
   "devDependencies": {
     "husky": "0.14.3",
     "lint-staged": "4.3.0",
-    "prettier": "1.7.4"
+    "prettier": "1.7.4",
+    "typescript": "2.5.3"
   },
   "dependencies": {
     "aws-sdk": "2.138.0",
@@ -31,6 +35,7 @@
   "lint-staged": {
     "*.js": [
       "prettier --single-quote --trailing-comma all --write",
+      "compile",
       "git add"
     ]
   }

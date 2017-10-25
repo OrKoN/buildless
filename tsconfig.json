@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "lib/**/*.ts",
+    "lib/**/*.js",
+    "index.js",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
