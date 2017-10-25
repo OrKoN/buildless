@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "exit 0",
-    "precommit": "lint-staged",
+    "precommit": "npm run compile && lint-staged",
     "compile": "npm run clean && tsc --allowJs -p .",
     "watch": "tsc --allowJs -w -p .",
     "clean": "rm -rf dist"
@@ -35,7 +35,6 @@
   "lint-staged": {
     "*.js": [
       "prettier --single-quote --trailing-comma all --write",
-      "compile",
       "git add"
     ]
   }
