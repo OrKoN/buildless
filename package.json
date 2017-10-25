@@ -4,11 +4,20 @@
   "description": "Tool to bundle and develop static HTML websites",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "precommit": "lint-staged"
   },
   "keywords": [],
   "author": "Oleksii Rudenko <alexei.rudenko@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "bls": "./index.js"
+  },
+  "devDependencies": {
+    "husky": "0.14.3",
+    "lint-staged": "4.3.0",
+    "prettier": "1.7.4"
+  },
   "dependencies": {
     "aws-sdk": "2.138.0",
     "chokidar": "1.7.0",
@@ -19,7 +28,10 @@
     "mime": "2.0.3",
     "minimist": "1.2.0"
   },
-  "bin": {
-    "bls": "./index.js"
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
   }
 }
