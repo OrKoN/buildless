@@ -5,10 +5,14 @@
 Development HTTP server and deployment tool for static websites.
 
 - local http server
-- rebuild of file changes
-- templates via EJS support for all html and js files
+- rebuild on fs changes
+- templates via EJS
 - configuration per environment
 - deployment to S3
+
+> I was procrastinating and created this tool for my simple static websites.
+> 
+> [orkon](https://github.com/OrKoN)
 
 This tool will not ever do the following:
 
@@ -56,3 +60,5 @@ Deploy static folder
 ```sh
 bls deploy [-s dev]
 ```
+
+<%= ENDPOINT %>

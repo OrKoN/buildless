@@ -4,7 +4,7 @@
   "description": "Tool to bundle and develop static HTML websites",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "exit 0",
     "precommit": "lint-staged"
   },
   "keywords": [],
