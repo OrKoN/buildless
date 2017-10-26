@@ -7,7 +7,7 @@
   "scripts": {
     "test": "exit 0",
     "precommit": "npm run compile && lint-staged",
-    "prepublish": "npm run compile",
+    "prepublishOnly": "npm run compile",
     "compile": "npm run clean && tsc -p .",
     "watch": "tsc -w -p .",
     "clean": "rm -rf dist"
