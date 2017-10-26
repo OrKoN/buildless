@@ -13,13 +13,10 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "moduleResolution": "node",
-    "declaration": true,
     "strict": true
   },
   "include": [
     "lib/**/*.ts",
-    "lib/**/*.js",
-    "index.js",
     "index.ts"
   ],
   "exclude": [

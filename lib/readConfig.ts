@@ -1,6 +1,6 @@
 import path = require('path');
 
-export = function({ cwd, stage }: { cwd: string; stage: string }) {
+function readConfig({ cwd, stage }: { cwd: string; stage: string }): any {
   const configPath = path.join(cwd, '.buildless.js');
   let config: any;
   try {
@@ -13,23 +13,25 @@ export = function({ cwd, stage }: { cwd: string; stage: string }) {
     throw new Error('Environment ' + stage + ' is not listed in .buildless.js');
   }
   return {
-    _getEnvironment() {
+    _getEnvironment(): any {
       return config.environment[stage];
     },
-    _getIgnored() {
+    _getIgnored(): RegExp[] {
       return [
         /(^|[\/\\])\../, // dotfiles
         /node_modules/, // node_modules
       ];
     },
-    _getPort() {
+    _getPort(): number {
       return config.port;
     },
-    _getS3Bucket() {
+    _getS3Bucket(): string {
       return config.deployment.s3.bucket;
     },
-    _getTransforms() {
+    _getTransforms(): object[] {
       return config.transforms;
     },
   };
-};
+}
+
+export = readConfig;

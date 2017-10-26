@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import './lib/domain';
+
 import minimist = require('minimist');
 import _ = require('lodash');
 import MemoryFileSystem = require('memory-fs');
