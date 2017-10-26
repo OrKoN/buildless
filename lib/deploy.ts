@@ -1,18 +1,31 @@
-const glob = require('glob');
-const AWS = require('aws-sdk');
-const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
-const path = require('path');
-const fs = require('fs');
-const getMimeType = require('./utils/getMimeType');
+import glob = require('glob');
+import AWS = require('aws-sdk');
+import path = require('path');
+import fs = require('fs');
+import getMimeType = require('./utils/getMimeType');
 
-module.exports = ({ mfs, cwd, stage, config, sync }) => {
-  console.log(`Deploying stage ${stage.info}`.data);
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+
+export = ({
+  mfs,
+  cwd,
+  stage,
+  config,
+  sync,
+}: {
+  mfs: any;
+  cwd: string;
+  stage: string;
+  config: any;
+  sync: any;
+}) => {
+  console.log(`Deploying stage ${stage}`);
   const files = glob
     .sync('**/*', {
       cwd,
     })
     .filter(file => {
-      return !config._getIgnored().some(regexp => regexp.test(file));
+      return !config._getIgnored().some((regexp: any) => regexp.test(file));
     })
     .filter(file => {
       return !fs.lstatSync(file).isDirectory();
@@ -45,9 +58,9 @@ module.exports = ({ mfs, cwd, stage, config, sync }) => {
     }),
   )
     .then(() => {
-      console.log('Done'.info);
+      console.log('Done');
     })
     .catch(err => {
-      console.log('Smth went wrong'.error, err);
+      console.log('Smth went wrong', err);
     });
 };

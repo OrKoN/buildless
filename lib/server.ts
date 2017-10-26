@@ -1,9 +1,9 @@
-const http = require('http');
-const url = require('url');
+import http = require('http');
+import url = require('url');
 
-module.exports = function start({ config, serve }) {
+export = function start({ config, serve }: { config: any; serve: any }) {
   http
-    .createServer((req, res) => {
+    .createServer((req: any, res: any) => {
       try {
         const parsed = url.parse(req.url);
         const { data, mimeType } = serve(parsed.pathname);
@@ -31,6 +31,6 @@ module.exports = function start({ config, serve }) {
       }
     })
     .listen(config._getPort(), () => {
-      console.log(`server is listening in port ${config._getPort()}`.info);
+      console.log(`server is listening in port ${config._getPort()}`);
     });
 };

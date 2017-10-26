@@ -2,21 +2,32 @@
   "name": "buildless",
   "version": "0.0.4",
   "description": "Tool to bundle and develop static HTML websites",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "exit 0",
     "precommit": "npm run compile && lint-staged",
-    "compile": "npm run clean && tsc --allowJs -p .",
-    "watch": "tsc --allowJs -w -p .",
+    "prepublish": "npm run compile",
+    "compile": "npm run clean && tsc -p .",
+    "watch": "tsc -w -p .",
     "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "Oleksii Rudenko <alexei.rudenko@gmail.com>",
   "license": "MIT",
   "bin": {
-    "bls": "./index.js"
+    "bls": "./dist/index.js"
   },
   "devDependencies": {
+    "@types/chokidar": "1.7.3",
+    "@types/colors": "1.1.3",
+    "@types/ejs": "2.3.33",
+    "@types/glob": "5.0.33",
+    "@types/lodash": "4.14.80",
+    "@types/memory-fs": "0.3.0",
+    "@types/mime": "2.0.0",
+    "@types/minimist": "1.2.0",
+    "@types/node": "8.0.47",
     "husky": "0.14.3",
     "lint-staged": "4.3.0",
     "prettier": "1.7.4",
@@ -32,8 +43,11 @@
     "mime": "2.0.3",
     "minimist": "1.2.0"
   },
+  "files": [
+    "dist"
+  ],
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "prettier --single-quote --trailing-comma all --write",
       "git add"
     ]

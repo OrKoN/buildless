@@ -1,8 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+import fs = require('fs');
+import path = require('path');
 
-function transformFile(config, filePath, data, environment) {
-  var matching = config._getTransforms().filter(t => t.test.test(filePath));
+function transformFile(
+  config: any,
+  filePath: string,
+  data: any,
+  environment: any,
+) {
+  var matching = config
+    ._getTransforms()
+    .filter((t: any) => t.test.test(filePath));
   var series = Promise.resolve(data);
   for (let t of matching) {
     series = series.then(processed =>
@@ -12,7 +19,12 @@ function transformFile(config, filePath, data, environment) {
   return series;
 }
 
-function syncFs(mfs, cwd, config, { event, filePath, stage }) {
+export = function sync(
+  mfs: any,
+  cwd: string,
+  config: any,
+  { event, filePath }: { event: string; filePath: string },
+) {
   switch (event) {
     case 'add':
     case 'change':
@@ -34,11 +46,8 @@ function syncFs(mfs, cwd, config, { event, filePath, stage }) {
         .catch(err => {
           console.log(err);
         });
-      break;
-    // TODO process other events
     default:
     // TODO error
   }
-}
-
-module.exports = syncFs;
+  return Promise.resolve();
+};

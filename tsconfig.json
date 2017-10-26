@@ -12,7 +12,9 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "declaration": true,
+    "strict": true
   },
   "include": [
     "lib/**/*.ts",

@@ -1,8 +1,8 @@
-const path = require('path');
+import path = require('path');
 
-module.exports = function({ cwd, stage }) {
+export = function({ cwd, stage }: { cwd: string; stage: string }) {
   const configPath = path.join(cwd, '.buildless.js');
-  let config = null;
+  let config: any;
   try {
     config = require(configPath);
   } catch (err) {

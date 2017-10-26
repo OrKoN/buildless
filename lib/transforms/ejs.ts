@@ -1,6 +1,6 @@
-const ejs = require('ejs');
+import ejs = require('ejs');
 
-module.exports = function ejsTransform(config, data, environment) {
+export = function ejsTransform(_config: any, data: any, environment: any) {
   return Promise.resolve(
     Buffer.from(ejs.render(data.toString('utf8'), environment), 'utf8'),
   );

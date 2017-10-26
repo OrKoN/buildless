@@ -1,7 +1,14 @@
-const path = require('path');
-const getMimeType = require('./utils/getMimeType');
+import path = require('path');
+import getMimeType = require('./utils/getMimeType');
 
-function serveFile(mfs, rootObjectFilename, absolutePath) {
+export = function serveFile(
+  mfs: any,
+  rootObjectFilename: string,
+  absolutePath: string,
+): {
+  data: Buffer;
+  mimeType: string;
+} {
   try {
     const extension = absolutePath.split('.').pop();
     return {
@@ -20,6 +27,4 @@ function serveFile(mfs, rootObjectFilename, absolutePath) {
     }
     throw err;
   }
-}
-
-module.exports = serveFile;
+};
