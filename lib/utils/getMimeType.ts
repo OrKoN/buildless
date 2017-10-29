@@ -1,6 +1,6 @@
 import mime = require('mime');
 
-export = function getMimeType(fileExt: string | undefined) {
+export = function getMimeType(fileExt: string | undefined): string {
   if (!fileExt) {
     return 'text/plain';
   }

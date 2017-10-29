@@ -12,9 +12,7 @@ function transformFile(
     .filter((t: any) => t.test.test(filePath));
   var series = Promise.resolve(data);
   for (let t of matching) {
-    series = series.then(processed =>
-      require('./transforms/' + t.name)(config, processed, environment),
-    );
+    series = series.then(processed => t.fn(config, processed, environment));
   }
   return series;
 }

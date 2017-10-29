@@ -1,9 +1,8 @@
 {
   "name": "buildless",
   "version": "0.0.5",
-  "description": "Tool to bundle and develop static HTML websites",
+  "description": "Tool develop static HTML websites",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "exit 0",
     "precommit": "npm run compile && lint-staged",
@@ -12,16 +11,21 @@
     "watch": "tsc -w -p .",
     "clean": "rm -rf dist"
   },
-  "keywords": [],
+  "keywords": [
+    "http",
+    "server",
+    "development",
+    "static",
+    "websites"
+  ],
   "author": "Oleksii Rudenko <alexei.rudenko@gmail.com>",
   "license": "MIT",
   "bin": {
-    "bls": "./dist/index.js"
+    "bls": "./dist/bin/bls.js"
   },
   "devDependencies": {
     "@types/chokidar": "1.7.3",
     "@types/colors": "1.1.3",
-    "@types/ejs": "2.3.33",
     "@types/glob": "5.0.33",
     "@types/lodash": "4.14.80",
     "@types/memory-fs": "0.3.0",
@@ -37,7 +41,6 @@
     "aws-sdk": "2.138.0",
     "chokidar": "1.7.0",
     "colors": "1.1.2",
-    "ejs": "2.5.7",
     "glob": "7.1.2",
     "memory-fs": "0.4.1",
     "mime": "2.0.3",

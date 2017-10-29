@@ -13,8 +13,8 @@ export = function({
     .watch(cwd, {
       ignored: config._getIgnored(),
     })
-    .on('all', (event, filePath) => {
-      console.log('change detected: ' + filePath.info);
+    .on('all', (event: string, filePath: string) => {
+      console.log('change detected: ' + filePath);
       sync({
         event,
         filePath,

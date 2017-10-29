@@ -1,6 +1,14 @@
 import path = require('path');
 
-function readConfig({ cwd, stage }: { cwd: string; stage: string }): any {
+interface Config {
+  _getEnvironment(): any;
+  _getIgnored(): RegExp[];
+  _getPort(): number;
+  _getS3Bucket(): string;
+  _getTransforms(): object[];
+}
+
+function readConfig({ cwd, stage }: { cwd: string; stage: string }): Config {
   const configPath = path.join(cwd, '.buildless.js');
   let config: any;
   try {
@@ -20,6 +28,8 @@ function readConfig({ cwd, stage }: { cwd: string; stage: string }): any {
       return [
         /(^|[\/\\])\../, // dotfiles
         /node_modules/, // node_modules
+        /package.json/,
+        /package-lock.json/,
       ];
     },
     _getPort(): number {

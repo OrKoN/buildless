@@ -1,3 +1,5 @@
+const bls = require('./dist/index');
+
 module.exports = {
   port: 8080,
   environment: {
@@ -8,12 +10,7 @@ module.exports = {
       ENDPOINT: 'prod',
     },
   },
-  transforms: [
-    {
-      test: /\.(html|css|js|md)$/,
-      name: 'ejs',
-    },
-  ],
+  transforms: [],
   deployment: {
     s3: {
       bucket: 'orkon-test',

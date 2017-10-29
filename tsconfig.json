@@ -16,6 +16,7 @@
     "strict": true
   },
   "include": [
+    "bin/*.ts",
     "lib/**/*.ts",
     "index.ts"
   ],
