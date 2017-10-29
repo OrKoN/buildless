@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/OrKoN/buildless.svg?branch=master)](https://travis-ci.org/OrKoN/buildless)
 
+> I was procrastinating and created this tool for my simple static websites.
+
 Development HTTP server and deployment tool for static websites.
 
 - local http server
@@ -9,10 +11,6 @@ Development HTTP server and deployment tool for static websites.
 - templates via EJS
 - configuration per environment
 - deployment to S3
-
-> I was procrastinating and created this tool for my simple static websites.
-> 
-> [orkon](https://github.com/OrKoN)
 
 This tool will not ever do the following:
 
