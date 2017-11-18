@@ -1,5 +1,8 @@
 import fs = require('fs');
 import path = require('path');
+import util = require('util');
+
+const readFile = util.promisify(fs.readFile);
 
 function transformFile(
   config: any,
@@ -21,6 +24,7 @@ export = function sync(
   mfs: any,
   cwd: string,
   config: any,
+  dbg: any,
   { event, filePath }: { event: string; filePath: string },
 ) {
   switch (event) {
@@ -31,19 +35,17 @@ export = function sync(
       const mfsDirname = path.dirname(relMfsPath);
       const relFsPath = filePath.replace(cwd, '.');
 
-      return transformFile(
-        config,
-        relFsPath,
-        fs.readFileSync(relFsPath),
-        config._getEnvironment(),
-      )
-        .then(data => {
-          mfs.mkdirpSync(mfsDirname);
-          mfs.writeFileSync(relMfsPath, data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      return readFile(relFsPath).then(data => {
+        dbg(`read data from ${relFsPath} (${data.length})`);
+        return transformFile(config, relFsPath, data, config._getEnvironment())
+          .then(data => {
+            mfs.mkdirpSync(mfsDirname);
+            mfs.writeFileSync(relMfsPath, data);
+          })
+          .catch(err => {
+            dbg('error happened %s', err);
+          });
+      });
     default:
     // TODO error
   }

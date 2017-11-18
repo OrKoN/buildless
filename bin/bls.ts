@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import minimist = require('minimist');
+import debug = require('debug');
 import _ = require('lodash');
 import MemoryFileSystem = require('memory-fs');
 
@@ -16,13 +17,14 @@ const command = argv._.shift();
 const stage = argv.s || argv.stage || 'dev';
 const cwd = process.cwd();
 const mfs = new MemoryFileSystem();
+const dbg = debug('buildless');
 
 const config = readConfig({
   cwd,
   stage,
 });
-const sync = _.partial(_sync, mfs, cwd, config);
-const serve = _.partial(_serve, mfs, 'index.html');
+const sync = _.partial(_sync, mfs, cwd, config, dbg);
+const serve = _.partial(_serve, mfs, 'index.html', dbg);
 
 switch (command) {
   case 'start':
@@ -30,11 +32,13 @@ switch (command) {
       config,
       cwd,
       sync,
+      dbg,
     });
 
     server({
       config,
       serve,
+      dbg,
     });
 
     break;

@@ -4,6 +4,7 @@ import getMimeType = require('./utils/getMimeType');
 export = function serveFile(
   mfs: any,
   rootObjectFilename: string,
+  dbg: any,
   absolutePath: string,
 ): {
   data: Buffer;
@@ -21,7 +22,7 @@ export = function serveFile(
         const isDir = mfs.statSync(absolutePath).isDirectory();
         if (isDir) {
           const indexFileUrl = path.join(absolutePath, rootObjectFilename);
-          return serveFile(mfs, rootObjectFilename, indexFileUrl);
+          return serveFile(mfs, rootObjectFilename, dbg, indexFileUrl);
         }
         break;
     }
