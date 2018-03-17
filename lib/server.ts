@@ -1,12 +1,13 @@
 import http = require('http');
 import url = require('url');
+import Config = require('./config');
 
 export = function start({
   config,
   serve,
   dbg,
 }: {
-  config: any;
+  config: Config;
   serve: any;
   dbg: any;
 }) {

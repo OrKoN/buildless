@@ -3,9 +3,9 @@ const bls = require('./dist/index');
 module.exports = {
   port: 8080,
   environment: {
-    dev: {
+    dev: () => ({
       ENDPOINT: 'dev',
-    },
+    }),
     prod: {
       ENDPOINT: 'prod',
     },

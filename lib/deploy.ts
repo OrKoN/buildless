@@ -3,6 +3,7 @@ import AWS = require('aws-sdk');
 import path = require('path');
 import fs = require('fs');
 import getMimeType = require('./utils/getMimeType');
+import Config = require('./config');
 
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
@@ -16,7 +17,7 @@ export = ({
   mfs: any;
   cwd: string;
   stage: string;
-  config: any;
+  config: Config;
   sync: any;
 }) => {
   console.log(`Deploying stage ${stage}`);
@@ -26,6 +27,11 @@ export = ({
     })
     .filter(file => {
       return !config._getIgnored().some((regexp: any) => regexp.test(file));
+    })
+    .filter(file => {
+      return !config
+        ._getIgnoredByDeploy()
+        .some((regexp: any) => regexp.test(file));
     })
     .filter(file => {
       return !fs.lstatSync(file).isDirectory();

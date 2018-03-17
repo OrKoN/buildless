@@ -1,15 +1,16 @@
 import path = require('path');
+import Config = require('./config');
 
-interface Config {
-  _getEnvironment(): any;
-  _getIgnored(): RegExp[];
-  _getPort(): number;
-  _getS3Bucket(): string;
-  _getTransforms(): object[];
-}
-
-function readConfig({ cwd, stage }: { cwd: string; stage: string }): Config {
-  const configPath = path.join(cwd, '.buildless.js');
+function readConfig({
+  cwd,
+  stage,
+  configFile,
+}: {
+  cwd: string;
+  stage: string;
+  configFile: string;
+}): Config {
+  const configPath = path.join(cwd, configFile);
   let config: any;
   try {
     config = require(configPath);
@@ -22,7 +23,9 @@ function readConfig({ cwd, stage }: { cwd: string; stage: string }): Config {
   }
   return {
     _getEnvironment(): any {
-      return config.environment[stage];
+      return config.environment[stage] instanceof Function
+        ? config.environment[stage]()
+        : config.environment[stage];
     },
     _getIgnored(): RegExp[] {
       return [
@@ -32,13 +35,19 @@ function readConfig({ cwd, stage }: { cwd: string; stage: string }): Config {
         /package-lock.json/,
       ];
     },
+    _getIgnoredByDeploy(): RegExp[] {
+      return config.ignoredByDeploy || [];
+    },
     _getPort(): number {
       return config.port;
     },
     _getS3Bucket(): string {
       return config.deployment.s3.bucket;
     },
-    _getTransforms(): object[] {
+    _getTransforms(): Array<{
+      test: any;
+      fn: any;
+    }> {
       return config.transforms;
     },
   };

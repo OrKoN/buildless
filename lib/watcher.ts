@@ -1,4 +1,5 @@
 import chokidar = require('chokidar');
+import Config = require('./config');
 
 export = function({
   config,
@@ -6,7 +7,7 @@ export = function({
   sync,
   dbg,
 }: {
-  config: any;
+  config: Config;
   cwd: string;
   sync: any;
   dbg: any;

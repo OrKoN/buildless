@@ -1,18 +1,17 @@
 import fs = require('fs');
 import path = require('path');
 import util = require('util');
+import Config = require('./config');
 
 const readFile = util.promisify(fs.readFile);
 
 function transformFile(
-  config: any,
+  config: Config,
   filePath: string,
   data: any,
   environment: any,
 ) {
-  var matching = config
-    ._getTransforms()
-    .filter((t: any) => t.test.test(filePath));
+  var matching = config._getTransforms().filter(t => t.test.test(filePath));
   var series = Promise.resolve(data);
   for (let t of matching) {
     series = series.then(processed => t.fn(config, processed, environment));
@@ -23,7 +22,7 @@ function transformFile(
 export = function sync(
   mfs: any,
   cwd: string,
-  config: any,
+  config: Config,
   dbg: any,
   { event, filePath }: { event: string; filePath: string },
 ) {
